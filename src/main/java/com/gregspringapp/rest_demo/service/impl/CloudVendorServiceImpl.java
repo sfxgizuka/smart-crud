@@ -1,5 +1,6 @@
 package com.gregspringapp.rest_demo.service.impl;
 
+import com.gregspringapp.rest_demo.exception.CloudVendorNotFoundException;
 import com.gregspringapp.rest_demo.model.CloudVendor;
 import com.gregspringapp.rest_demo.repository.CloudVendorRepository;
 import com.gregspringapp.rest_demo.service.CloudVendorService;
@@ -37,7 +38,7 @@ public class CloudVendorServiceImpl implements CloudVendorService {
     @Override
     public CloudVendor getCloudVendor(String cloudVendorId) {
         return cloudVendorRepository
-                .findById(cloudVendorId).orElseThrow(() -> new RuntimeException("Cloud vendor not found for ID: " + cloudVendorId));
+                .findById(cloudVendorId).orElseThrow(() -> new CloudVendorNotFoundException("Cloud vendor not found for ID: " + cloudVendorId));
     }
 
     @Override
